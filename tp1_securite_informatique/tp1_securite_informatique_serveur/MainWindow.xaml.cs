@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace tp1_securite_informatique
+namespace tp1_securite_informatique_serveur
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
