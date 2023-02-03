@@ -1,0 +1,322 @@
+﻿<Window x:Class="INF11207_TP2_MarianePouliot_NathanStOnge.Principale"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:INF11207_TP2_MarianePouliot_NathanStOnge" xmlns:models="clr-namespace:INF11207_TP2_MarianePouliot_NathanStOnge.Models" d:DataContext="{d:DesignInstance Type=models:Setting}"
+        mc:Ignorable="d"
+        Title="Principale" 
+        Height="441" 
+        Width="636"
+        WindowStartupLocation = "CenterScreen"
+        ResizeMode="NoResize" Icon="/Views/1904661-building-dashboard-default-home-house-page-start_122511.ico">
+    <Window.Resources>
+        <local:RadioButtonConverter x:Key="radioButtonConverter"/>
+    </Window.Resources>
+    <StackPanel>
+        <Menu DockPanel.Dock ="Top">
+            <MenuItem Header="Fichier">
+                <MenuItem Header="Ouvrir">
+                    <MenuItem.Icon>
+                        <iconPacks:PackIconFontAwesome Kind="FolderOpenRegular"/>
+                    </MenuItem.Icon>
+                    <MenuItem Header="Fichier Train" Command="{Binding OpenTrainFileCommand}">
+                        <MenuItem.Icon>
+                            <iconPacks:PackIconFontAwesome Kind="ChartAreaSolid"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Fichier Test" Command="{Binding OpenTestFileCommand}">
+                        <MenuItem.Icon>
+                            <iconPacks:PackIconFontAwesome Kind="MicroscopeSolid"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Quitter" Command="{Binding QuitWindowMenuCommand}">
+                    <MenuItem.Icon>
+                        <iconPacks:PackIconFontAwesome Kind="ArrowAltCircleLeftRegular" Height="15"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <TabControl Height="400">
+            <!--Paramétrage-->
+            <TabItem Header="Paramétrages" Height="22" Margin="-2,-2,-2,0" VerticalAlignment="Top">
+                <Grid Margin="50,20,50,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.75*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Source="/Ressources/thomas-franke-LQ5o5boYE-8-unsplash2.jpg" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Margin="0,0,0,10"/>
+
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="20,0,0,30">
+                        <TextBox Text="{Binding Setting.TrainFilePath, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="163" VerticalContentAlignment="Center"></TextBox>
+                        <Button Command="{Binding OpenTrainFileCommand}" Content="Importer" Height="30" Width="100" Margin="10,0,0,0" BorderBrush="{x:Null}" Background="#FF633333" Foreground="White">
+                        </Button>
+                    </StackPanel>
+                    <Rectangle Grid.Column="1" Grid.Row="0" Fill="#FFD7B3A5" Margin="10,103,0,25" Height="3"/>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="20,0,0,0">
+                        <Label Content="Valeur de K :" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FF151515"></Label>
+                        <TextBox Text="{Binding Setting.ValueK, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="169" VerticalContentAlignment="Center"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="20,0,0,0">
+                        <Label Content="Algorithme de tri :" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FF151515"></Label>
+                        <ComboBox SelectedItem="{Binding Setting.SortAlgo, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding sortAlgorithms}" Height="30" Width="125" Margin="0,0,20,0">
+                        </ComboBox>
+                    </StackPanel>
+
+                    <Button Command="{Binding SetKnnCommand}" Height="30"  Grid.Column="1" Grid.Row="3" Margin="20,0,03,0" BorderBrush="{x:Null}" Foreground="White" Background="#FF925F5F">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5,0">Paramétrer</TextBlock>
+                            <iconPacks:PackIconForkAwesome Kind="Calculator"/>
+                        </StackPanel>
+                    </Button>
+
+                </Grid>
+            </TabItem>
+            <!--Prédiction-->
+            <TabItem Header="Prédiction">
+                <Grid Margin="50,20,50,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="10,0,10,0">
+                        <Label Content="Alcool :" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FF151515"></Label>
+                        <TextBox Text="{Binding Setting.Alcool, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Height="30" Width="110" VerticalContentAlignment="Center"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="10,0,10,0">
+                        <Label Content="Sulfates :" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FF151515"></Label>
+                        <TextBox Text="{Binding Setting.Sulfate, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Height="30" Width="110" VerticalContentAlignment="Center"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="10,0,10,0">
+                        <Label Content="Acide citrique :" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FF151515"></Label>
+                        <TextBox Text="{Binding Setting.AcidCitric, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Height="30" Width="107" VerticalContentAlignment="Center"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Margin="10,0,10,0">
+                        <Label Content="Acide volatile :" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FF151515"></Label>
+                        <TextBox Text="{Binding Setting.AcidVolatil, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" Height="30" Width="110" VerticalContentAlignment="Center"></TextBox>
+                    </StackPanel>
+
+                    <Button Command="{Binding PredictCommand}" Height="30"  Grid.Column="0" Grid.Row="5" Margin="13,0,13,0" BorderBrush="{x:Null}" Background="#FF925F5F">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5,0" Foreground="White">Prédire</TextBlock>
+                            <iconPacks:PackIconFontAwesome Kind="WineGlassAltSolid" Height="15" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Image Source="/Ressources/wine.png" Grid.Column="1" Grid.RowSpan="5" Visibility="Visible"/>
+
+                    <Image x:Name="first" Visibility="Hidden" Source="/Ressources/first.png" Grid.Column="1" Grid.RowSpan="2" Grid.Row="1" Height="110" VerticalAlignment="Top" Margin="0,0,40,0"/>
+                    <Image x:Name="second" Visibility="Hidden" Source="/Ressources/second.png" Grid.Column="1" Grid.RowSpan="2" Grid.Row="1" Height="110" VerticalAlignment="Top" Margin="0,0,40,0"/>
+                    <Image x:Name="third" Visibility="Hidden" Source="/Ressources/third.png" Grid.Column="1" Grid.RowSpan="2" Grid.Row="1" Height="110" VerticalAlignment="Top" Margin="0,0,40,0"/>
+
+                </Grid>
+            </TabItem>
+
+            <!--Performance-->
+            <TabItem Header="Performance">
+                <Grid Margin="50,20,50,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2.5*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10,0,10,0">
+                        <TextBox Text="{Binding Setting.TestFilePath, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="240" VerticalContentAlignment="Center"></TextBox>
+                        <Button Command="{Binding OpenTestFileCommand}" Content="Importer" Height="30" Width="100" Margin="10,0,00,0" BorderBrush="{x:Null}" Background="#FF633333" Foreground="White"></Button>
+                        <Button Command="{Binding EvaluateKnnCommand}" Content="Évaluer" Height="30" Width="100" Margin="10,0,00,0" BorderBrush="{x:Null}" Background="#FF925F5F" Foreground="White"></Button>
+                    </StackPanel>
+
+                    <Label Content="Le taux de reconnaissance" VerticalAlignment="Top" Margin="0,40,0,0" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Grid.Column="1" Grid.Row="1" Foreground="#FF151515"></Label>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+                        <Label x:Name="performance" Content="0" ContentStringFormat="N2" VerticalAlignment="Center" FontSize="70" FontWeight="Bold" Foreground="#FF151515"></Label>
+                        <Label Content="%" VerticalAlignment="Center" FontSize="45" FontWeight="Bold" Foreground="#FF151515" Margin="0,0,0,20"></Label>
+
+                    </StackPanel>
+
+                    <Grid Grid.Column="0" Grid.Row="1" Margin="0,20,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.75*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.75*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+
+
+                        <Rectangle Grid.Column="1" Grid.Row="0" Fill="#FF925F5F"/>
+                        <Label Content="3" Grid.Column="1" Grid.Row="0" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+
+                        <Rectangle Grid.Column="2" Grid.Row="0" Fill="#FF925F5F" />
+                        <Label Content="6" Grid.Column="2" Grid.Row="0" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+
+                        <Rectangle Grid.Column="3" Grid.Row="0" Fill="#FF925F5F" />
+                        <Label Content="9" Grid.Column="3" Grid.Row="0" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+
+                        <Rectangle Grid.Column="0" Grid.Row="1" Fill="#FF925F5F" />
+                        <Label Content="3" Grid.Column="0" Grid.Row="1" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+
+                        <Label Content=".." x:Name="t_3" Grid.Column="1" Grid.Row="1" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Rectangle Grid.Column="1" Grid.Row="1" Stroke="#FFD7B3A5" />
+
+                        <Label Content=".." x:Name="t_6" Grid.Column="2" Grid.Row="1" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Rectangle Grid.Column="2" Grid.Row="1" Stroke="#FFD7B3A5"/>
+
+                        <Label Content=".." x:Name="t_9" Grid.Column="3" Grid.Row="1" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Rectangle Grid.Column="3" Grid.Row="1" Stroke="#FFD7B3A5" />
+
+
+                        <Rectangle Grid.Column="0" Grid.Row="2" Fill="#FF925F5F" />
+                        <Label Content="6" Grid.Column="0" Grid.Row="2" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+
+                        <Label Content=".." x:Name="s_3" Grid.Column="1" Grid.Row="2" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Rectangle Grid.Column="1" Grid.Row="2" Stroke="#FFD7B3A5" />
+
+                        <Label Content=".." x:Name="s_6" Grid.Column="2" Grid.Row="2" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Rectangle Grid.Column="2" Grid.Row="2" Stroke="#FFD7B3A5" />
+
+                        <Label Content=".." x:Name="s_9" Grid.Column="3" Grid.Row="2" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Rectangle Grid.Column="3" Grid.Row="2" Stroke="#FFD7B3A5"/>
+
+
+                        <Rectangle Grid.Column="0" Grid.Row="3" Fill="#FF925F5F"/>
+                        <Label Content="9" Grid.Column="0" Grid.Row="3" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+
+                        <Label Content=".." x:Name="n_3" Grid.Column="1" Grid.Row="3" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Rectangle Grid.Column="1" Grid.Row="3" Stroke="#FFD7B3A5"/>
+
+                        <Label Content=".." x:Name="n_6" Grid.Column="2" Grid.Row="3" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Rectangle Grid.Column="2" Grid.Row="3" Stroke="#FFD7B3A5" />
+
+                        <Label Content=".." x:Name="n_9" Grid.Column="3" Grid.Row="3" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Rectangle Grid.Column="3" Grid.Row="3" Stroke="#FFD7B3A5" />
+
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+
+
+
+                <!--Historique prédiction-->
+            <TabItem Header="Historique des prédictions" >
+                
+                    <Grid Margin="50,20,50,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.2*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Command="{Binding RefreshCommand}" Height="30" Width="200" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="#FF925F5F">
+                            <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5,0" Foreground="White">Mise à jour</TextBlock>
+                                <iconPacks:PackIconFontAwesome Kind="DatabaseSolid" Height="15" Foreground="White"/>
+                            </StackPanel>
+                        </Button>
+                        <DataGrid HorizontalAlignment="Center" Width="500" Margin="0,10,00,0" Grid.Row="1" Background="{x:Null}" BorderBrush="#FFCFD0D0" ItemsSource="{Binding Predictions, NotifyOnSourceUpdated=True}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Date" Width="0.60*" Binding="{Binding Date}"/>
+                                <DataGridTextColumn Header="K" Width="0.4*" Binding="{Binding ValueK}"/>
+                                <DataGridTextColumn Header="Algo. de tri" Width="*" Binding="{Binding SortAlgo}"/>
+                                <DataGridTextColumn Header="Alcool" Width="0.6*" Binding="{Binding Alcool}" />
+                                <DataGridTextColumn Header="Sulfates" Width="0.7*" Binding="{Binding Sulfate}"/>
+                                <DataGridTextColumn Header="Acide citrique" Width="*" Binding="{Binding AcidCitric}"/>
+                                <DataGridTextColumn Header="Acide volatile" Width="*" Binding="{Binding AcidVolatil}"/>
+                                <DataGridTextColumn Header="Qualité" Width="0.7*" Binding="{Binding Quality}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    
+                </Grid>
+            </TabItem>
+            <!--Mise à jour des données utilisateurs-->
+            <TabItem Header="Mise à jour des informations utilisateur">
+                <Grid Margin="100,20,100,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Margin="10,0,10,0">
+                        <Label Content="Nom :" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FF151515"></Label>
+                        <TextBox Text="{Binding User.Name,UpdateSourceTrigger=PropertyChanged}" Height="30" Width="129" VerticalContentAlignment="Center"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="0,0,10,0">
+                        <Label Content="Prénom :" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FF151515"></Label>
+                        <TextBox Text="{Binding User.FirstName,UpdateSourceTrigger=PropertyChanged}" Height="30" Width="112" VerticalContentAlignment="Center"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="1"  Grid.Column="0" Margin="10,0,10,0">
+                        <Label Content="Date de naissance :" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FF151515"></Label>
+                        <DatePicker SelectedDate="{Binding User.Birthday, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="center" Width="233"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="10,0,10,0">
+                        <Label Content="Ville :" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FF151515"></Label>
+                        <ComboBox Height="30" Width="132" VerticalContentAlignment="Center" SelectedItem="{Binding User.City, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Cities}" >
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="05,0,10,0">
+                        <RadioButton Content="Homme" IsChecked="{Binding User.Gender, Mode=TwoWay, Converter={StaticResource radioButtonConverter}, ConverterParameter=Homme}" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FF151515" />
+                        <RadioButton Content="Femme" IsChecked="{Binding User.Gender, Mode=TwoWay, Converter={StaticResource radioButtonConverter}, ConverterParameter=Femme}" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Margin="15,0,0,0" Foreground="#FF151515"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" Margin="10,0,10,0">
+                        <Label Content="E-mail :" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FF151515"></Label>
+                        <TextBox Text="{Binding User.Email, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="320" VerticalContentAlignment="Center"></TextBox>
+                    </StackPanel>
+
+                    <Button Command="{Binding UpdateUserInfosCommand}" Height="30"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="#FF925F5F" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5,0">Modifier l'utilisateur</TextBlock>
+                            <iconPacks:PackIconFontAwesome Kind="UserEditSolid" Height="15"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </StackPanel>
+</Window>

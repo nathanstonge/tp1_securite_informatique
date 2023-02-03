@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Ressources\anna-bratiychuk-IeNoBmJ011g-unsplash.jpg" />
+    <None Remove="Ressources\first.png" />
+    <None Remove="Ressources\second.png" />
+    <None Remove="Ressources\third.png" />
+    <None Remove="Ressources\thomas-franke-LQ5o5boYE-8-unsplash2.jpg" />
+    <None Remove="Ressources\wine.png" />
+    <None Remove="Views\1904661-building-dashboard-default-home-house-page-start_122511.ico" />
+    <None Remove="Views\1904670-account-avatar-contact-picture-profile-user-user-icon_122520.ico" />
+    <None Remove="Views\adduser_4961.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Ressources\anna-bratiychuk-IeNoBmJ011g-unsplash.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\first.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\second.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\third.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\thomas-franke-LQ5o5boYE-8-unsplash2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\wine.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\1904661-building-dashboard-default-home-house-page-start_122511.ico" />
+    <Resource Include="Views\1904670-account-avatar-contact-picture-profile-user-user-icon_122520.ico" />
+    <Resource Include="Views\adduser_4961.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="27.2.1" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CsvHelper">
+      <HintPath>..\..\..\Documents\00_Importants\00_Uni\SessionH22\Prog_oriente_objet_2\Travaux\TP2\INF11207 - Travail Pratique II - Ressources\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="KnnLibrary">
+      <HintPath>..\..\KnnApp\KnnApp\bin\Debug\KnnLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,9 @@
+﻿<Application x:Class="INF11207_TP2_MarianePouliot_NathanStOnge.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:INF11207_TP2_MarianePouliot_NathanStOnge"
+             StartupUri="Views/Connexion.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
