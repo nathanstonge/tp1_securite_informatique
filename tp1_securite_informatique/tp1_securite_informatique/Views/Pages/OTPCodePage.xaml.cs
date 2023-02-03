@@ -20,9 +20,12 @@ namespace tp1_securite_informatique_client.Views.Pages
     /// </summary>
     public partial class OTPCodePage : Page
     {
-        public OTPCodePage()
+        private int _userId;
+        public OTPCodePage(int userId)
         {
+            _userId = userId;
             InitializeComponent();
+            DataContext = new ViewModels.OTPViewModel(this, _userId);
         }
     }
 }

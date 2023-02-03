@@ -9,6 +9,18 @@
       Title="OTPCodePage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="1" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">Code OTP</Label>
+        <Label Grid.Row="2" FontSize="50" Name="OTPCode" Content="12345678" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Grid.Row="4" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">Temps restant</Label>
+        <Label Grid.Row="5" FontSize="50" Name="TimeLeft" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Page>

@@ -8,8 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
+    <Reference Include="OTPGenerator">
+      <HintPath>Z:\GitHub_repos\OTPGenerator\OTPGenerator\bin\Debug\net6.0\OTPGenerator.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

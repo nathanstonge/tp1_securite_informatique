@@ -25,6 +25,7 @@ namespace tp1_securite_informatique_client.Views.Windows
             InitializeComponent();
             Main.Content = _loginPage;
             TopBar.Content = "Authentification";
+            //DataContext = new ViewModels.LoginViewModel();
         }
     }
 }
