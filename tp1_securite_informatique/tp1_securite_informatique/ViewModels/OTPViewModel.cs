@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
-using OTPGenerator;
+//using OTPGenerator;
 using tp1_securite_informatique_client.Views.Pages;
 using System.Windows.Threading;
 using System.Windows.Input;
