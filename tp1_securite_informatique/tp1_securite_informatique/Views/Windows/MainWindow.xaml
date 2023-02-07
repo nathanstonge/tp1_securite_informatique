@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tp1_securite_informatique_client.Views.Windows"
         mc:Ignorable="d"
-        Title="Application OTP - Client" Height="450" Width="800">
+        Title="Application OTP - Client" Height="463" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="TopBar" Background="#FFDE6D6D">Titre</Label>
+        <Label x:Name="TopBar" Background="#FF4476D8" FontSize="16" FontWeight="Bold">Titre</Label>
         <Frame x:Name="Main" Grid.Row="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

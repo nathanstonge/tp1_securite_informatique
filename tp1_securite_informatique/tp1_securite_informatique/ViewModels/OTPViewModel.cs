@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
-using OTPGenerator;
+//using OTPGenerator;
 using tp1_securite_informatique_client.Views.Pages;
 using System.Windows.Threading;
 
@@ -28,7 +28,7 @@ namespace tp1_securite_informatique_client.ViewModels
         public void StartCountDown()
         {
             //Generation code OTP
-            _page.OTPCode.Content = OTPGenerator.OTPGenerator.Generate(_userId);
+            //_page.OTPCode.Content = OTPGenerator.OTPGenerator.Generate(_userId);
 
             //Depart compte a rebours
             DateTime _dateTime = DateTime.UtcNow;
