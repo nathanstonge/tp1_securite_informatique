@@ -7,10 +7,10 @@ namespace OTPGenerator
     public class OTPGenerator
     {
 
-        public static string Generate(int userId)
+        public static string Generate(string _dateTime, int _userId)
         {
             // 1 - Generation de la date (temps) actuel.
-            DateTime _dateTime = DateTime.UtcNow;
+            //DateTime _dateTime = DateTime.UtcNow;
             //return _dateTime.ToString("dd-MM-yyyy-HH-mm-ss");
 
             // 2 - Transformation du temps en hash code.
@@ -19,11 +19,22 @@ namespace OTPGenerator
             SHA1 _hash = SHA1.Create();  
             var _dateBytes = Encoding.Default.GetBytes(_dateTime.ToString());
             var _hashCode = _hash.ComputeHash(_dateBytes);
-            var _code = Convert.ToHexString(_hashCode);
+            var _codeDate = Convert.ToHexString(_hashCode);
+
+            var _idBytes = Encoding.Default.GetBytes(_userId.ToString());
+            var _hashCodeId = _hash.ComputeHash(_idBytes);
+            var _codeId = Convert.ToHexString(_hashCodeId);
+
+            var _code = string.Concat(_codeId, _codeDate);
 
             // 3 - Recuperation du dernier chiffre de l'identifiant d'usager.
-            string _stringUserId = userId.ToString();
+            string _stringUserId = _userId.ToString();
             int _increment = Int32.Parse((_stringUserId.Last()).ToString());
+
+            if (_increment == 0) 
+            {
+                _increment = 10;
+            }
 
             // 4 - Generation du code de 8 chiffres a partir du hash et du dernier chiffre du id d'usager.
 

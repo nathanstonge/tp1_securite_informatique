@@ -28,11 +28,12 @@ namespace tp1_securite_informatique_client.ViewModels
         public void StartCountDown()
         {
             //Generation code OTP
-            _page.OTPCode.Content = OTPGenerator.OTPGenerator.Generate(_userId);
+            //_page.OTPCode.Content = OTPGenerator.OTPGenerator.Generate(9);
 
             //Depart compte a rebours
             DateTime _dateTime = DateTime.UtcNow;
             string dateTimeString = _dateTime.ToString("dd-MM-yyyy-HH-mm-ss");
+            _page.OTPCode.Content = OTPGenerator.OTPGenerator.Generate(dateTimeString, _userId);
 
             _time = TimeSpan.FromSeconds(Int32.Parse(dateTimeString.Substring(17)));
 
