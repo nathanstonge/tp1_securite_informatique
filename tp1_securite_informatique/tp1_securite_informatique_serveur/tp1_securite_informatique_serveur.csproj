@@ -7,4 +7,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Ressources\padlock-black-icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Ressources\padlock-black-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
 </Project>
