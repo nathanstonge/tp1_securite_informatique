@@ -37,7 +37,7 @@ namespace tp1_securite_informatique_client.ViewModels
 
             _page.OTPCode.Content = _otpCode;
 
-            _page.TimeLeft.Content = timeLeft;
+            _page.TimeLeft.Content = timeLeft.ToString("0:00");
 
             _page.TimeLeftPg.Visibility= Visibility.Visible;
 
