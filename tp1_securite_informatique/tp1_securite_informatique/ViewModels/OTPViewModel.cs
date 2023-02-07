@@ -9,6 +9,7 @@ using OTPGenerator;
 using tp1_securite_informatique_client.Views.Pages;
 using System.Windows.Threading;
 using System.Windows.Input;
+using tp1_securite_informatique_client.ViewModels;
 
 namespace tp1_securite_informatique_client.ViewModels
 {
