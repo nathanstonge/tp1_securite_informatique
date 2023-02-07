@@ -24,8 +24,8 @@ namespace tp1_securite_informatique_client.ViewModels
         {
             _page = page;
             _userId = userId;
-            _otpCode = OTPGenerator.OTPGenerator.Generate(_userId);
-            
+            _otpCode = OTPGenerator.OTPGenerator.Generate(dateTimeString, _userId);
+
             //Paramétristion du compte à rebours
             _dispatcherTimer = new DispatcherTimer();
             _dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
@@ -56,11 +56,11 @@ namespace tp1_securite_informatique_client.ViewModels
             //Depart compte a rebours
             DateTime _dateTime = DateTime.UtcNow;
             string dateTimeString = _dateTime.ToString("dd-MM-yyyy-HH-mm-ss");
-            _page.OTPCode.Content = OTPGenerator.OTPGenerator.Generate(dateTimeString, _userId);
+           
 
             int timeLeft = 60 - DateTime.UtcNow.Second;
 
-            _page.OTPCode.Content = _otpCode;
+            //_page.OTPCode.Content = _otpCode;
 
 
             _page.TimeLeft.Content = timeLeft.ToString("0:00");
