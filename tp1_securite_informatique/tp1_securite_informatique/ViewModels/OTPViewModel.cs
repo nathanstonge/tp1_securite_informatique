@@ -24,6 +24,7 @@ namespace tp1_securite_informatique_client.ViewModels
             _page = page;
             _userId = userId;
             _otpCode = OTPGenerator.OTPGenerator.Generate(_userId);
+
             _dispatcherTimer = new DispatcherTimer();
             _dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -33,7 +34,7 @@ namespace tp1_securite_informatique_client.ViewModels
         //Code executé à chaque seconde
         private void dispatcherTimer_Tick(object sender, EventArgs e)  
         {
-            int timeLeft = 60 - DateTime.Now.Second;
+            int timeLeft = 60 - DateTime.UtcNow.Second;
 
             _page.OTPCode.Content = _otpCode;
 
