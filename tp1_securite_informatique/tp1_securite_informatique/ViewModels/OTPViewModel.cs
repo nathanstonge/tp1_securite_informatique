@@ -26,6 +26,7 @@ namespace tp1_securite_informatique_client.ViewModels
             _userId = userId;
             _otpCode = OTPGenerator.OTPGenerator.Generate(_userId);
             
+            //Paramétristion du compte à rebours
             _dispatcherTimer = new DispatcherTimer();
             _dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -38,13 +39,14 @@ namespace tp1_securite_informatique_client.ViewModels
         }
 
         public ICommand DeconnexionCommand { get; set; }
+        //Gestion de la déconnexion de l'utilisateur
         public void Deconnexion()
         {
             _page.NavigationService.Navigate(new LoginPage());
         }
-            
 
-        //Code executé à chaque seconde
+
+        //Code executé à chaque seconde - Génération des codes OTP et affichage du compte à rebours
         private void dispatcherTimer_Tick(object sender, EventArgs e)  
         {
             int timeLeft = 60 - DateTime.UtcNow.Second;
