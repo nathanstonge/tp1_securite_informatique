@@ -18,6 +18,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Button Grid.Row="0" Command="{Binding DeconnexionCommand}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="80" Height="20" Margin="0,0,10,30" Content="Déconnexion"/>
         <Label Grid.Row="1" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">Code OTP</Label>
         <Label Grid.Row="2" FontSize="50" Name="OTPCode" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label Grid.Row="4" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">Temps restant</Label>

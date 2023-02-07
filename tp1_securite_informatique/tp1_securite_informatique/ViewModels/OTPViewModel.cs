@@ -24,12 +24,24 @@ namespace tp1_securite_informatique_client.ViewModels
             _page = page;
             _userId = userId;
             _otpCode = OTPGenerator.OTPGenerator.Generate(_userId);
-
+            
             _dispatcherTimer = new DispatcherTimer();
             _dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             _dispatcherTimer.Start();
+
+            DeconnexionCommand = new RelayCommand(
+                o => true,
+                o => Deconnexion());
+
         }
+
+        public ICommand DeconnexionCommand { get; set; }
+        public void Deconnexion()
+        {
+            _page.NavigationService.Navigate(new LoginPage());
+        }
+            
 
         //Code executé à chaque seconde
         private void dispatcherTimer_Tick(object sender, EventArgs e)  
