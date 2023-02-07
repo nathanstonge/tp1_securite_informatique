@@ -1,5 +1,4 @@
-﻿using INF11207_TP2_MarianePouliot_NathanStOnge.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;

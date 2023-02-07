@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace INF11207_TP2_MarianePouliot_NathanStOnge.ViewModels
+namespace tp1_securite_informatique_client.ViewModels
 {
     public class RelayCommand : ICommand
     {
