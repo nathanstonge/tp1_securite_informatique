@@ -8,46 +8,42 @@ using System.Windows;
 using OTPGenerator;
 using tp1_securite_informatique_client.Views.Pages;
 using System.Windows.Threading;
+using System.Windows.Input;
 
 namespace tp1_securite_informatique_client.ViewModels
 {
     public class OTPViewModel
     {
+        DispatcherTimer _dispatcherTimer;
+        string _otpCode;
         private OTPCodePage _page;
         private int _userId;
-        DispatcherTimer _timer;
-        TimeSpan _time;
+
         public OTPViewModel(OTPCodePage page, int userId)
         {
             _page = page;
             _userId = userId;
-
-            StartCountDown();
+            _otpCode = OTPGenerator.OTPGenerator.Generate(_userId);
+            _dispatcherTimer = new DispatcherTimer();
+            _dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            _dispatcherTimer.Start();
         }
 
-        public void StartCountDown()
+        //Code executé à chaque seconde
+        private void dispatcherTimer_Tick(object sender, EventArgs e)  
         {
-            //Generation code OTP
-            _page.OTPCode.Content = OTPGenerator.OTPGenerator.Generate(_userId);
+            int timeLeft = 60 - DateTime.Now.Second;
 
-            //Depart compte a rebours
-            DateTime _dateTime = DateTime.UtcNow;
-            string dateTimeString = _dateTime.ToString("dd-MM-yyyy-HH-mm-ss");
+            _page.OTPCode.Content = _otpCode;
 
-            _time = TimeSpan.FromSeconds(Int32.Parse(dateTimeString.Substring(17)));
+            _page.TimeLeft.Content = timeLeft;
 
-            _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
-            {
-                _page.TimeLeft.Content = _time.ToString("c");
-                if (_time == TimeSpan.Zero) StartCountDown();
-                _time = _time.Add(TimeSpan.FromSeconds(-1));
-            }, Application.Current.Dispatcher);
+            _page.TimeLeftPg.Visibility= Visibility.Visible;
 
-            _timer.Start();
-            
+            _page.TimeLeftPg.Value = ((float)timeLeft * 100) / 60;
+
+            if (60 - DateTime.Now.Second == 1) { _otpCode = OTPGenerator.OTPGenerator.Generate(_userId); }
         }
-        
-
-
     }
 }
