@@ -8,6 +8,8 @@ using System.Windows;
 using OTPGenerator;
 using tp1_securite_informatique_client.Views.Pages;
 using System.Windows.Threading;
+using INF11207_TP2_MarianePouliot_NathanStOnge.ViewModels;
+using System.Windows.Input;
 
 namespace tp1_securite_informatique_client.ViewModels
 {
@@ -22,9 +24,18 @@ namespace tp1_securite_informatique_client.ViewModels
             _page = page;
             _userId = userId;
 
+            DeconnexionCommand = new RelayCommand(
+                o => true,
+                o => Deconnexion());
+
             StartCountDown();
         }
 
+        public ICommand DeconnexionCommand { get; set; }
+        public void Deconnexion()
+        {
+            _page.NavigationService.Navigate(new LoginPage());
+        }
         public void StartCountDown()
         {
             //Generation code OTP

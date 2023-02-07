@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Reference Include="OTPGenerator">
-      <HintPath>Z:\GitHub_repos\OTPGenerator\OTPGenerator\bin\Debug\net6.0\OTPGenerator.dll</HintPath>
+      <HintPath>Z:\GitHub_repos\tp1_securite_informatique\OTPGenerator\OTPGenerator\bin\Debug\net6.0\OTPGenerator.dll</HintPath>
     </Reference>
   </ItemGroup>
 
