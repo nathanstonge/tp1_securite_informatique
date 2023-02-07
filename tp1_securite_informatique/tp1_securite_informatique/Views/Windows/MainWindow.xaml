@@ -3,15 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:tp1_securite_informatique_client.Views.Windows"
         mc:Ignorable="d"
-        Title="Application OTP - Client" Height="450" Width="800">
+        Title="Application OTP - Client" Height="450" Width="800" Icon="/Ressources/padlock-black-icon.png" >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="TopBar" Background="#FFDE6D6D">Titre</Label>
+        <Label x:Name="TopBar" Background="#FF4476D8" FontSize="16" FontWeight="Bold">Titre</Label>
         <Frame x:Name="Main" Grid.Row="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

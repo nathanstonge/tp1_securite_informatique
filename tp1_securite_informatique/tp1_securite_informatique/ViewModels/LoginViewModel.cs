@@ -1,5 +1,4 @@
-﻿using INF11207_TP2_MarianePouliot_NathanStOnge.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -19,41 +18,49 @@ namespace tp1_securite_informatique_client.ViewModels
         public Models.AuthCredentialsDbContext _db;
         private LoginPage _page;
         Window _window;
-        //public Models.User User { get; set; }
         private string _username;
         private string _password;
-        private int? _userIdFound;
+        private int _userIdFound;
 
         public LoginViewModel(LoginPage page)
         {
             _db = new Models.AuthCredentialsDbContext();
             _page = page;
             _window = Application.Current.MainWindow;
-            //User = new User();
-            _username = _page.Username.ToString();
-            _password = _page.Password.ToString();
-            _userIdFound = null;
-
 
             ConnexionCommand = new RelayCommand(
-                o => CredentialsVerification(_username, _password),
-                o => Connexion());
+                o => !string.IsNullOrEmpty(_page.Username.Text) && !string.IsNullOrEmpty(_page.Password.Password),
+                o => Connexion(_page.Username.Text.ToString(), _page.Password.Password.ToString()));
+
         }
 
-        public ICommand ConnexionCommand { get; set;}
-        public void Connexion()
-        {
-            (_window as MainWindow).TopBar.Content = "Generation du code OTP";
-            //Parametre OTPCodePage: id utilisateur trouve
-            _page.NavigationService.Navigate(new OTPCodePage(1));
-        }
+        public ICommand ConnexionCommand { get; private set;}
 
-        //A completer
-        public bool CredentialsVerification(string username, string password)
+        //Gestion de la connexion de l'utilisateur
+        public void Connexion(string username, string password)
         {
-            //Code pour authentifier un utilisateur dans la collection
-            //Assigner _userIdFound si authentification reussie
-            return true;
+            foreach (User user in _db.Users)
+            {
+                if (username == user.Username)
+                {
+                    if (password == user.Password)
+                    {
+                        _userIdFound = user.Id;
+                        (_window as MainWindow).TopBar.Content = "Generation du code OTP";
+                        _page.NavigationService.Navigate(new OTPCodePage(_userIdFound));
+                    }
+                    else
+                    {
+       
+                        _page.Echec.Content = "Informations incorrectes pour la connexion";
+                    }
+                }
+                else
+                {
+                    _page.Echec.Content = "Informations incorrectes pour la connexion";
+                }
+
+            }
         }
     }
 }

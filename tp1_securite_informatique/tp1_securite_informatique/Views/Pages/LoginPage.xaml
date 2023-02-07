@@ -16,14 +16,16 @@
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">Identifiant</Label>
-        <TextBox x:Name="Username" Margin="320,10,320,10" Grid.Row="2"/>
+        <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Foreground="#FF636363" FontSize="11">Identifiant</Label>
+        <TextBox x:Name="Username" Margin="300,10,300,10" Grid.Row="2" VerticalContentAlignment="Center"/>
 
-        <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3">Mot de passe</Label>
-        <TextBox x:Name="Password" Margin="320,10,320,10" Grid.Row="4"/>
+        <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Foreground="#FF636363" FontSize="11">Mot de passe</Label>
+        <PasswordBox x:Name="Password"  Margin="300,10,300,10" Grid.Row="4" VerticalContentAlignment="Center" Password=""/>
+        <Label x:Name="Echec" Content="" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="6" Foreground="#FFFF4444"></Label>
 
-        <Button Command="{Binding ConnexionCommand}" Margin="320,10,320,10" Grid.Row="5" Content="Se connecter"/>
+        <Button Command="{Binding ConnexionCommand}" Margin="300,10,300,10" Grid.Row="5" Content="Se connecter" Background="#FF7FBB5E" FontWeight="Normal" Foreground="White" BorderBrush="#FF7FBB5E"/>
     </Grid>
 </Page>

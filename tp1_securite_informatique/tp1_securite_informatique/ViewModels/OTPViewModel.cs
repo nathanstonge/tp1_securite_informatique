@@ -5,28 +5,51 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
-using OTPGenerator;
+//using OTPGenerator;
 using tp1_securite_informatique_client.Views.Pages;
 using System.Windows.Threading;
+using System.Windows.Input;
+using tp1_securite_informatique_client.ViewModels;
 
 namespace tp1_securite_informatique_client.ViewModels
 {
     public class OTPViewModel
     {
+        DispatcherTimer _dispatcherTimer;
+        string _otpCode;
         private OTPCodePage _page;
         private int _userId;
-        DispatcherTimer _timer;
-        TimeSpan _time;
+
         public OTPViewModel(OTPCodePage page, int userId)
         {
             _page = page;
             _userId = userId;
+            _otpCode = OTPGenerator.OTPGenerator.Generate(_userId);
+            
+            //Paramétristion du compte à rebours
+            _dispatcherTimer = new DispatcherTimer();
+            _dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            _dispatcherTimer.Start();
 
-            StartCountDown();
+            DeconnexionCommand = new RelayCommand(
+                o => true,
+                o => Deconnexion());
+
         }
 
-        public void StartCountDown()
+        public ICommand DeconnexionCommand { get; set; }
+        //Gestion de la déconnexion de l'utilisateur
+        public void Deconnexion()
         {
+            _page.NavigationService.Navigate(new LoginPage());
+        }
+
+
+        //Code executé à chaque seconde - Génération des codes OTP et affichage du compte à rebours
+        private void dispatcherTimer_Tick(object sender, EventArgs e)  
+        {
+
             //Generation code OTP
             //_page.OTPCode.Content = OTPGenerator.OTPGenerator.Generate(9);
 
@@ -35,20 +58,21 @@ namespace tp1_securite_informatique_client.ViewModels
             string dateTimeString = _dateTime.ToString("dd-MM-yyyy-HH-mm-ss");
             _page.OTPCode.Content = OTPGenerator.OTPGenerator.Generate(dateTimeString, _userId);
 
-            _time = TimeSpan.FromSeconds(Int32.Parse(dateTimeString.Substring(17)));
+            int timeLeft = 60 - DateTime.UtcNow.Second;
 
-            _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
-            {
-                _page.TimeLeft.Content = _time.ToString("c");
-                if (_time == TimeSpan.Zero) StartCountDown();
-                _time = _time.Add(TimeSpan.FromSeconds(-1));
-            }, Application.Current.Dispatcher);
+            _page.OTPCode.Content = _otpCode;
 
-            _timer.Start();
-            
+
+            _page.TimeLeft.Content = timeLeft.ToString("0:00");
+
+            _page.TimeLeftPg.Visibility= Visibility.Visible;
+
+            _page.TimeLeftPg.Value = ((float)timeLeft * 100) / 60;
+
+            if (60 - DateTime.Now.Second == 1) { _otpCode = OTPGenerator.OTPGenerator.Generate(_userId); }
         }
-        
 
-
+        //Référence(s)
+        //https://learn.microsoft.com/en-us/dotnet/api/system.windows.threading.dispatchertimer?view=windowsdesktop-7.0
     }
 }
