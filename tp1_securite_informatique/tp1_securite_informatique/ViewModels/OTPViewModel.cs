@@ -49,9 +49,19 @@ namespace tp1_securite_informatique_client.ViewModels
         //Code executé à chaque seconde - Génération des codes OTP et affichage du compte à rebours
         private void dispatcherTimer_Tick(object sender, EventArgs e)  
         {
+
+            //Generation code OTP
+            //_page.OTPCode.Content = OTPGenerator.OTPGenerator.Generate(9);
+
+            //Depart compte a rebours
+            DateTime _dateTime = DateTime.UtcNow;
+            string dateTimeString = _dateTime.ToString("dd-MM-yyyy-HH-mm-ss");
+            _page.OTPCode.Content = OTPGenerator.OTPGenerator.Generate(dateTimeString, _userId);
+
             int timeLeft = 60 - DateTime.UtcNow.Second;
 
             _page.OTPCode.Content = _otpCode;
+
 
             _page.TimeLeft.Content = timeLeft.ToString("0:00");
 
