@@ -19,12 +19,13 @@ namespace tp1_securite_informatique_client.ViewModels
         string _otpCode;
         private OTPCodePage _page;
         private int _userId;
+        DateTime _dateTime;
 
         public OTPViewModel(OTPCodePage page, int userId)
         {
             _page = page;
             _userId = userId;
-            _otpCode = OTPGenerator.OTPGenerator.Generate(dateTimeString, _userId);
+            _otpCode = OTPGenerator.OTPGenerator.Generate(getFormattedDateTime(), _userId);
 
             //Paramétristion du compte à rebours
             _dispatcherTimer = new DispatcherTimer();
@@ -54,14 +55,13 @@ namespace tp1_securite_informatique_client.ViewModels
             //_page.OTPCode.Content = OTPGenerator.OTPGenerator.Generate(9);
 
             //Depart compte a rebours
-            DateTime _dateTime = DateTime.UtcNow;
-            string dateTimeString = _dateTime.ToString("dd-MM-yyyy-HH-mm-ss");
+            //DateTime _dateTime = DateTime.UtcNow;
+            //string dateTimeString = _dateTime.ToString("dd-MM-yyyy-HH-mm-ss");
            
 
             int timeLeft = 60 - DateTime.UtcNow.Second;
 
-            //_page.OTPCode.Content = _otpCode;
-
+            _page.OTPCode.Content = _otpCode;
 
             _page.TimeLeft.Content = timeLeft.ToString("0:00");
 
@@ -69,7 +69,13 @@ namespace tp1_securite_informatique_client.ViewModels
 
             _page.TimeLeftPg.Value = ((float)timeLeft * 100) / 60;
 
-            if (60 - DateTime.Now.Second == 1) { _otpCode = OTPGenerator.OTPGenerator.Generate(_userId); }
+            if (60 - DateTime.Now.Second == 1) { _otpCode = OTPGenerator.OTPGenerator.Generate(getFormattedDateTime(), _userId); }
+        }
+
+        private string getFormattedDateTime()
+        {
+            _dateTime = DateTime.UtcNow;
+            return _dateTime.ToString("dd-MM-yyyy-HH-mm-ss");
         }
 
         //Référence(s)
