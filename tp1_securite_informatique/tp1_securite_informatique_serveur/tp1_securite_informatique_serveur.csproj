@@ -12,14 +12,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Ressources\padlock-black-icon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <Reference Include="OTPGenerator">
+      <HintPath>Z:\GitHub_repos\tp1_securite_informatique\OTPGenerator\OTPGenerator\bin\Debug\net6.0\OTPGenerator.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
+    <Resource Include="Ressources\padlock-black-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

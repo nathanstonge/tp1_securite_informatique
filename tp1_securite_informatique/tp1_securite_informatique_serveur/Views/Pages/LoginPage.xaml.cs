@@ -23,6 +23,7 @@ namespace tp1_securite_informatique_serveur.Views.Pages
         public LoginPage()
         {
             InitializeComponent();
+            DataContext = new ViewModels.LoginViewModel(this);
         }
     }
 }
