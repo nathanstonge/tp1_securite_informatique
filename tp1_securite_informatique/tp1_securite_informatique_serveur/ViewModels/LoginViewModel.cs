@@ -20,18 +20,15 @@ namespace tp1_securite_informatique_serveur.ViewModels
         private string _oldOtpCodeFred;
         private string _oldOtpCodeMariane;
         private string _oldOtpCodeNath;
-        private string _oldOtpCodesString;
         private DateTime _dateTime;
         private DateTime _dateTimeMinusOneMinute;
         private int _userIdFound;
         private int _loginAttempts = 0;
         DispatcherTimer _dispatcherTimer;
-        private int _thisYear;
-        private int _thisMonth;
-        private int _thisDay;
 
         public LoginViewModel(LoginPage loginPage)
         {
+            //Affichage des codes OTP valides du dernier bloc de 60 secondes
             _db = new Models.AuthCredentialsDbContext();
             _loginPage = loginPage;
             _oldOtpCodeMariane = OTPGenerator.OTPGenerator.Generate(getFormattedDateTimeMinusOneMinute(), 1);
@@ -39,7 +36,7 @@ namespace tp1_securite_informatique_serveur.ViewModels
             _oldOtpCodeNath = OTPGenerator.OTPGenerator.Generate(getFormattedDateTimeMinusOneMinute(), 3);
             _loginPage.OTPCode.Text = $"Anciens codes | mariane: {_oldOtpCodeMariane} | fred: {_oldOtpCodeFred} | nath: {_oldOtpCodeNath}";
 
-            //Paramétristion du compte à rebours
+            //Paramétrisation du compte à rebours
             _dispatcherTimer = new DispatcherTimer();
             _dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -50,6 +47,7 @@ namespace tp1_securite_informatique_serveur.ViewModels
                 o => Connexion(_loginPage.Username.Text.ToString(), _loginPage.Password.Password.ToString()));
 
         }
+        //Mise à jour de l'affichage des codes OTP valides du dernier bloc de 60 secondes
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             if (60 - DateTime.Now.Second == 1 && _loginPage.OTPCode.Text == "") {
@@ -61,6 +59,7 @@ namespace tp1_securite_informatique_serveur.ViewModels
 
         }
         public ICommand ConnexionCommand { get; private set; }
+        //Gestion de la connexion de l'utilisateur
         public void Connexion(string username, string password)
         {
             resetLoginStatusMessagesVisibility();
@@ -94,23 +93,26 @@ namespace tp1_securite_informatique_serveur.ViewModels
             loginAttemptsVerification();
 
         }
+        //Méthode retournant l'heure UTC actuelle dans le format "dd-MM-yyyy-HH-mm"
         private string getFormattedDateTime()
         {
             _dateTime = DateTime.UtcNow;
             return _dateTime.ToString("dd-MM-yyyy-HH-mm");
         }
+        //Méthode retournant l'heure UTC actuelle soustraite de 58 secondes dans le format "dd-MM-yyyy-HH-mm"
         private string getFormattedDateTimeMinusOneMinute()
         {
             _dateTimeMinusOneMinute = DateTime.UtcNow.AddSeconds(-58);
             return _dateTimeMinusOneMinute.ToString("dd-MM-yyyy-HH-mm");
         }
-
+        //Méthode cachant les messages d'erreur et de succès par rapport à l'authentification
         private void resetLoginStatusMessagesVisibility()
         {
             _loginPage.Fail.Visibility = Visibility.Hidden;
             _loginPage.Success.Visibility = Visibility.Hidden;
 
         }
+        //Méthode vérifiant le nombre de tentatives de connexion (si ce nombre s'avère à être égal à 5, l'application serveur se fermera)
         private void loginAttemptsVerification()
         {
             if(_loginAttempts == 5)

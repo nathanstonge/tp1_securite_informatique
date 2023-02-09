@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace tp1_securite_informatique_client.Models
 {
+    //Classe regroupant les données des utilisateurs à exploiter dans le cadre de cette application
     public class AuthCredentialsDbContext
     {
         public ObservableCollection<User> Users { get; set; }

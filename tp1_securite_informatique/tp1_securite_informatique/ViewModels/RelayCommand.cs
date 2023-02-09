@@ -7,6 +7,7 @@ using System.Windows.Input;
 
 namespace tp1_securite_informatique_client.ViewModels
 {
+    //Classe permettant la vérification des commandes des ViewModels dans lesquelles elle est instanciée
     public class RelayCommand : ICommand
     {
         private readonly Predicate<object> _canExecute;

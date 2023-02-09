@@ -26,7 +26,7 @@ namespace tp1_securite_informatique_client.ViewModels
             _page = page;
             _userId = userId;
 
-            //Paramétristion du compte à rebours
+            //Paramétrisation du compte à rebours
             _dispatcherTimer = new DispatcherTimer();
             _dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -62,7 +62,7 @@ namespace tp1_securite_informatique_client.ViewModels
                 _otpCode = OTPGenerator.OTPGenerator.Generate(getFormattedDateTime(), _userId);
             }
         }
-
+        //Méthode retournant l'heure UTC actuelle dans le format "dd-MM-yyyy-HH-mm"
         private string getFormattedDateTime()
         {
             _dateTime = DateTime.UtcNow;
@@ -70,6 +70,6 @@ namespace tp1_securite_informatique_client.ViewModels
         }
 
         //Référence(s)
-        //https://learn.microsoft.com/en-us/dotnet/api/system.windows.threading.dispatchertimer?view=windowsdesktop-7.0
+        //Compte à rebours: https://learn.microsoft.com/en-us/dotnet/api/system.windows.threading.dispatchertimer?view=windowsdesktop-7.0
     }
 }

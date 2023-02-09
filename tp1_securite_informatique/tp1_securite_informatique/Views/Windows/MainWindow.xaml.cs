@@ -27,7 +27,6 @@ namespace tp1_securite_informatique_client.Views.Windows
             this.Top = SystemParameters.PrimaryScreenHeight/2 - this.Height/2;   
             Main.Content = _loginPage;
             TopBar.Content = "Authentification";
-            //DataContext = new ViewModels.LoginViewModel();
         }
     }
 }
