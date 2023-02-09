@@ -18,6 +18,7 @@ namespace tp1_securite_informatique_serveur.ViewModels
         private string _otpCode;
         private DateTime _dateTime;
         private int _userIdFound;
+        private int _loginAttempts = 0;
 
         public LoginViewModel(LoginPage loginPage)
         {
@@ -51,11 +52,16 @@ namespace tp1_securite_informatique_serveur.ViewModels
                     {
 
                         _loginPage.Fail.Visibility = Visibility.Visible;
+                        _loginAttempts += 1;
+                        loginAttemptsVerification();
+                        return;
                     }
                 }
 
             }
             _loginPage.Fail.Visibility = Visibility.Visible;
+            _loginAttempts += 1;
+            loginAttemptsVerification();
 
         }
         private string getFormattedDateTime()
@@ -68,6 +74,11 @@ namespace tp1_securite_informatique_serveur.ViewModels
             _loginPage.Fail.Visibility = Visibility.Hidden;
             _loginPage.Success.Visibility = Visibility.Hidden;
 
+        }
+        private void loginAttemptsVerification()
+        {
+            if(_loginAttempts == 5)
+                System.Windows.Application.Current.Shutdown();
         }
     }
 }

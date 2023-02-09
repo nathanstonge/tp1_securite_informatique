@@ -19,6 +19,7 @@ namespace tp1_securite_informatique_client.ViewModels
         private LoginPage _loginPage;
         Window _window;
         private int _userIdFound;
+      
 
         public LoginViewModel(LoginPage loginPage)
         {
