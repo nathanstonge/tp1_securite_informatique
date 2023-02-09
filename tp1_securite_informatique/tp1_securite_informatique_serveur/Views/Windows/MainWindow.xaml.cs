@@ -20,9 +20,12 @@ namespace tp1_securite_informatique_serveur
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+            this.Left = 10 + this.Width;
+            this.Top = 0;
         }
     }
 }

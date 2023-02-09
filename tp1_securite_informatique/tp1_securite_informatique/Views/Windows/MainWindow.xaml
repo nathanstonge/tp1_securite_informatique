@@ -6,6 +6,7 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:tp1_securite_informatique_client.Views.Windows"
         mc:Ignorable="d"
+        WindowStartupLocation="Manual"
         Title="Application OTP - Client" Height="450" Width="800" Icon="/Ressources/padlock-black-icon.png" >
     <Grid>
         <Grid.RowDefinitions>

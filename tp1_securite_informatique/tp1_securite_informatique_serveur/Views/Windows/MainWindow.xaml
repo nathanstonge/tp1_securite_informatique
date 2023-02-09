@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tp1_securite_informatique_serveur"
         mc:Ignorable="d"
+        WindowStartupLocation="Manual"
         Title="Application OTP - Serveur" Height="450" Width="800" Icon="/Ressources/padlock-black-icon.png" >
     <Grid>
         <Grid.RowDefinitions>
