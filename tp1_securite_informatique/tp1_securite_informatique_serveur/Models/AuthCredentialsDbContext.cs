@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tp1_securite_informatique_client.Models
+namespace tp1_securite_informatique_serveur.Models
 {
     //Classe regroupant les données des utilisateurs à exploiter dans le cadre de cette application
     public class AuthCredentialsDbContext

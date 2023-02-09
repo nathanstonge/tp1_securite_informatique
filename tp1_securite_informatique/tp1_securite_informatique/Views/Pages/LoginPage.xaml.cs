@@ -28,7 +28,6 @@ namespace tp1_securite_informatique_client.Views.Pages
             _window = Application.Current.MainWindow;
             InitializeComponent();
             DataContext = new ViewModels.LoginViewModel(this);
-            //(_window as MainWindow).TopBar.Content = "Authentification";
         }
     }
 }

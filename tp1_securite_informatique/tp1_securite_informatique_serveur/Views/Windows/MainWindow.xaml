@@ -1,13 +1,12 @@
-﻿<Window x:Class="tp1_securite_informatique_client.Views.Windows.MainWindow"
+﻿<Window x:Class="tp1_securite_informatique_serveur.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:local="clr-namespace:tp1_securite_informatique_client.Views.Windows"
+        xmlns:local="clr-namespace:tp1_securite_informatique_serveur"
         mc:Ignorable="d"
         WindowStartupLocation="Manual"
-        Title="Application OTP - Client" Height="450" Width="800" Icon="/Ressources/padlock-black-icon.png" >
+        Title="Application OTP - Serveur" Height="450" Width="800" Icon="/Ressources/padlock-black-icon.png" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>

@@ -1,0 +1,38 @@
+﻿<Page x:Class="tp1_securite_informatique_serveur.Views.Pages.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:tp1_securite_informatique_serveur.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LoginPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.8*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="1.1*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="1.1*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="1.1*"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="1.6*"/>
+        </Grid.RowDefinitions>
+        <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Foreground="#FF636363" FontSize="11">Identifiant</Label>
+        <TextBox x:Name="Username" Margin="300,10,300,10" Grid.Row="2" VerticalContentAlignment="Center"/>
+
+        <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Foreground="#FF636363" FontSize="11">Mot de passe</Label>
+        <PasswordBox x:Name="Password"  Margin="300,10,300,10" Grid.Row="4" VerticalContentAlignment="Center" Password=""/>
+        
+        <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="5" Foreground="#FF636363" FontSize="11">Code OTP</Label>
+        <TextBox x:Name="OTPCode" Margin="300,10,300,10" Grid.Row="6" VerticalContentAlignment="Center"/>
+
+        <Button Command="{Binding ConnexionCommand}" Margin="300,10,300,10" Grid.Row="7" Content="Se connecter" Background="#FF7FBB5E" FontWeight="Normal" Foreground="White" BorderBrush="#FF7FBB5E"/>
+        <Label x:Name="Fail" Content="Accès refusé !" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="8" Foreground="#FFFF4444"></Label>
+        <Label x:Name="Success" Content="Accès confirmé !" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="8" Foreground="#FF7FBB5E"></Label>
+        
+    </Grid>
+</Page>

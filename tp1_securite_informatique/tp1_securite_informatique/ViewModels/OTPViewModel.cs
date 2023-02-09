@@ -25,9 +25,8 @@ namespace tp1_securite_informatique_client.ViewModels
         {
             _page = page;
             _userId = userId;
-            _otpCode = OTPGenerator.OTPGenerator.Generate(getFormattedDateTime(), _userId);
 
-            //Paramétristion du compte à rebours
+            //Paramétrisation du compte à rebours
             _dispatcherTimer = new DispatcherTimer();
             _dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -49,36 +48,28 @@ namespace tp1_securite_informatique_client.ViewModels
 
         //Code executé à chaque seconde - Génération des codes OTP et affichage du compte à rebours
         private void dispatcherTimer_Tick(object sender, EventArgs e)  
-        {
+        {  
 
-            //Generation code OTP
-            //_page.OTPCode.Content = OTPGenerator.OTPGenerator.Generate(9);
+            _page.OTPCode.Content = OTPGenerator.OTPGenerator.Generate(getFormattedDateTime(), _userId);
 
-            //Depart compte a rebours
-            //DateTime _dateTime = DateTime.UtcNow;
-            //string dateTimeString = _dateTime.ToString("dd-MM-yyyy-HH-mm-ss");
-           
-
-            int timeLeft = 60 - DateTime.UtcNow.Second;
-
-            _page.OTPCode.Content = _otpCode;
-
-            _page.TimeLeft.Content = timeLeft.ToString("0:00");
+            _page.TimeLeft.Content = (60 - DateTime.UtcNow.Second).ToString("0:00");
 
             _page.TimeLeftPg.Visibility= Visibility.Visible;
 
-            _page.TimeLeftPg.Value = ((float)timeLeft * 100) / 60;
+            _page.TimeLeftPg.Value = ((float)(60 - DateTime.UtcNow.Second) * 100) / 60;
 
-            if (60 - DateTime.Now.Second == 1) { _otpCode = OTPGenerator.OTPGenerator.Generate(getFormattedDateTime(), _userId); }
+            if (60 - DateTime.Now.Second == 1) { 
+                _otpCode = OTPGenerator.OTPGenerator.Generate(getFormattedDateTime(), _userId);
+            }
         }
-
+        //Méthode retournant l'heure UTC actuelle dans le format "dd-MM-yyyy-HH-mm"
         private string getFormattedDateTime()
         {
             _dateTime = DateTime.UtcNow;
-            return _dateTime.ToString("dd-MM-yyyy-HH-mm-ss");
+            return _dateTime.ToString("dd-MM-yyyy-HH-mm");
         }
 
         //Référence(s)
-        //https://learn.microsoft.com/en-us/dotnet/api/system.windows.threading.dispatchertimer?view=windowsdesktop-7.0
+        //Compte à rebours: https://learn.microsoft.com/en-us/dotnet/api/system.windows.threading.dispatchertimer?view=windowsdesktop-7.0
     }
 }

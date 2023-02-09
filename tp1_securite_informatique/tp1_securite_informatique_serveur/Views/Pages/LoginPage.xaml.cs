@@ -13,16 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace tp1_securite_informatique_serveur
+namespace tp1_securite_informatique_serveur.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LoginPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginPage : Page
     {
-        public MainWindow()
+        public LoginPage()
         {
             InitializeComponent();
+            DataContext = new ViewModels.LoginViewModel(this);
         }
     }
 }

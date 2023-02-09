@@ -16,21 +16,20 @@ namespace tp1_securite_informatique_client.ViewModels
     public class LoginViewModel
     {
         public Models.AuthCredentialsDbContext _db;
-        private LoginPage _page;
+        private LoginPage _loginPage;
         Window _window;
-        private string _username;
-        private string _password;
         private int _userIdFound;
+      
 
-        public LoginViewModel(LoginPage page)
+        public LoginViewModel(LoginPage loginPage)
         {
             _db = new Models.AuthCredentialsDbContext();
-            _page = page;
+            _loginPage = loginPage;
             _window = Application.Current.MainWindow;
 
             ConnexionCommand = new RelayCommand(
-                o => !string.IsNullOrEmpty(_page.Username.Text) && !string.IsNullOrEmpty(_page.Password.Password),
-                o => Connexion(_page.Username.Text.ToString(), _page.Password.Password.ToString()));
+                o => !string.IsNullOrEmpty(_loginPage.Username.Text) && !string.IsNullOrEmpty(_loginPage.Password.Password),
+                o => Connexion(_loginPage.Username.Text.ToString(), _loginPage.Password.Password.ToString()));
 
         }
 
@@ -47,20 +46,17 @@ namespace tp1_securite_informatique_client.ViewModels
                     {
                         _userIdFound = user.Id;
                         (_window as MainWindow).TopBar.Content = "Generation du code OTP";
-                        _page.NavigationService.Navigate(new OTPCodePage(_userIdFound));
+                        _loginPage.NavigationService.Navigate(new OTPCodePage(_userIdFound));
                     }
                     else
                     {
        
-                        _page.Echec.Content = "Informations incorrectes pour la connexion";
+                        _loginPage.Fail.Visibility = Visibility.Visible;
                     }
-                }
-                else
-                {
-                    _page.Echec.Content = "Informations incorrectes pour la connexion";
                 }
 
             }
+            _loginPage.Fail.Visibility = Visibility.Visible;
         }
     }
 }

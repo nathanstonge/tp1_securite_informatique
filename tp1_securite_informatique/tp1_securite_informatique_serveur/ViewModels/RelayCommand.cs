@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace tp1_securite_informatique_client.ViewModels
+namespace tp1_securite_informatique_serveur.ViewModels
 {
     //Classe permettant la vérification des commandes des ViewModels dans lesquelles elle est instanciée
     public class RelayCommand : ICommand

@@ -11,9 +11,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.6*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.6*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="0.5*"/>
@@ -24,8 +24,8 @@
 
         <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Foreground="#FF636363" FontSize="11">Mot de passe</Label>
         <PasswordBox x:Name="Password"  Margin="300,10,300,10" Grid.Row="4" VerticalContentAlignment="Center" Password=""/>
-        <Label x:Name="Echec" Content="" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="6" Foreground="#FFFF4444"></Label>
 
         <Button Command="{Binding ConnexionCommand}" Margin="300,10,300,10" Grid.Row="5" Content="Se connecter" Background="#FF7FBB5E" FontWeight="Normal" Foreground="White" BorderBrush="#FF7FBB5E"/>
+        <Label x:Name="Fail" Content="Informations incorrectes pour la connexion" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="6" Foreground="#FFFF4444"></Label>
     </Grid>
 </Page>
