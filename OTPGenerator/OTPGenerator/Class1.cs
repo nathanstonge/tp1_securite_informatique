@@ -17,15 +17,15 @@ namespace OTPGenerator
             //int hash = 0;
             //hash = _dateTime.Second.GetHashCode();
             SHA1 _hash = SHA1.Create();  
-            var _dateBytes = Encoding.Default.GetBytes(_dateTime.ToString());
+            var _dateBytes = Encoding.Default.GetBytes(string.Concat(_dateTime, _userId));
             var _hashCode = _hash.ComputeHash(_dateBytes);
-            var _codeDate = Convert.ToHexString(_hashCode);
+            var _code = Convert.ToHexString(_hashCode);
 
-            var _idBytes = Encoding.Default.GetBytes(_userId.ToString());
-            var _hashCodeId = _hash.ComputeHash(_idBytes);
-            var _codeId = Convert.ToHexString(_hashCodeId);
+            //var _idBytes = Encoding.Default.GetBytes(_userId.ToString());
+            //var _hashCodeId = _hash.ComputeHash(_idBytes);
+            //var _codeId = Convert.ToHexString(_hashCodeId);
 
-            var _code = string.Concat(_codeId, _codeDate);
+            //var _code = _codeDate + _codeId;
 
             // 3 - Recuperation du dernier chiffre de l'identifiant d'usager.
             string _stringUserId = _userId.ToString();

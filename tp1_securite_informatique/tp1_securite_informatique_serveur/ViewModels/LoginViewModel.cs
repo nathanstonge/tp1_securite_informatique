@@ -37,8 +37,7 @@ namespace tp1_securite_informatique_serveur.ViewModels
             _oldOtpCodeMariane = OTPGenerator.OTPGenerator.Generate(getFormattedDateTimeMinusOneMinute(), 1);
             _oldOtpCodeFred = OTPGenerator.OTPGenerator.Generate(getFormattedDateTimeMinusOneMinute(), 2);
             _oldOtpCodeNath = OTPGenerator.OTPGenerator.Generate(getFormattedDateTimeMinusOneMinute(), 3);
-            _oldOtpCodesString = $"mariane: {_oldOtpCodeMariane} fred: {_oldOtpCodeFred} nath: {_oldOtpCodeNath}";
-            _loginPage.OTPCode.Text = _oldOtpCodesString;
+            _loginPage.OTPCode.Text = $"Anciens codes | mariane: {_oldOtpCodeMariane} | fred: {_oldOtpCodeFred} | nath: {_oldOtpCodeNath}";
 
             //Paramétristion du compte à rebours
             _dispatcherTimer = new DispatcherTimer();
@@ -57,8 +56,9 @@ namespace tp1_securite_informatique_serveur.ViewModels
                 _oldOtpCodeMariane = OTPGenerator.OTPGenerator.Generate(getFormattedDateTimeMinusOneMinute(), 1);
                 _oldOtpCodeFred = OTPGenerator.OTPGenerator.Generate(getFormattedDateTimeMinusOneMinute(), 2);
                 _oldOtpCodeNath = OTPGenerator.OTPGenerator.Generate(getFormattedDateTimeMinusOneMinute(), 3);
-                _loginPage.OTPCode.Text = _oldOtpCodesString;
+                _loginPage.OTPCode.Text = $"Anciens codes | mariane: {_oldOtpCodeMariane} | fred: {_oldOtpCodeFred} | nath: {_oldOtpCodeNath}";
             }
+
         }
         public ICommand ConnexionCommand { get; private set; }
         public void Connexion(string username, string password)
@@ -97,12 +97,12 @@ namespace tp1_securite_informatique_serveur.ViewModels
         private string getFormattedDateTime()
         {
             _dateTime = DateTime.UtcNow;
-            return _dateTime.ToString("dd-MM-yyyy-HH-mm-ss");
+            return _dateTime.ToString("dd-MM-yyyy-HH-mm");
         }
         private string getFormattedDateTimeMinusOneMinute()
         {
-            _dateTimeMinusOneMinute = DateTime.UtcNow.AddMinutes(-1);
-            return _dateTimeMinusOneMinute.ToString("dd-MM-yyyy-HH-mm-ss");
+            _dateTimeMinusOneMinute = DateTime.UtcNow.AddSeconds(-58);
+            return _dateTimeMinusOneMinute.ToString("dd-MM-yyyy-HH-mm");
         }
 
         private void resetLoginStatusMessagesVisibility()
