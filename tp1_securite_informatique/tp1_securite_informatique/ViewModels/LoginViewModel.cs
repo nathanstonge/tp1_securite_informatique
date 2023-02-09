@@ -53,10 +53,6 @@ namespace tp1_securite_informatique_client.ViewModels
                         _loginPage.Fail.Visibility = Visibility.Visible;
                     }
                 }
-                //else
-                //{
-                //    _loginPage.Fail.Visibility = Visibility.Visible;
-                //}
 
             }
             _loginPage.Fail.Visibility = Visibility.Visible;
