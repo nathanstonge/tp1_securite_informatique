@@ -23,8 +23,8 @@ namespace tp1_securite_informatique_client.Views.Windows
         {
             _loginPage = new LoginPage();
             InitializeComponent();
-            this.Left = 0;
-            this.Top = 0;   
+            this.Left = 50;
+            this.Top = SystemParameters.PrimaryScreenHeight/2 - this.Height/2;   
             Main.Content = _loginPage;
             TopBar.Content = "Authentification";
             //DataContext = new ViewModels.LoginViewModel();

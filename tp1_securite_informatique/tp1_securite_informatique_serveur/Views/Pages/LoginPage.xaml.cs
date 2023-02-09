@@ -12,23 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using tp1_securite_informatique_serveur.Views.Pages;
 
-namespace tp1_securite_informatique_serveur
+namespace tp1_securite_informatique_serveur.Views.Pages
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for LoginPage.xaml
+    /// </summary>
+    public partial class LoginPage : Page
     {
-        Page _loginPage;
-
-        public MainWindow()
+        public LoginPage()
         {
-            _loginPage = new LoginPage();
             InitializeComponent();
-            this.Left = 60 + this.Width;
-            this.Top = SystemParameters.PrimaryScreenHeight/2 - this.Height/2;
-            
-            Main.Content = _loginPage;
-            TopBar.Content = "Authentification";
         }
     }
 }
