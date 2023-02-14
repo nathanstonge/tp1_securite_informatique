@@ -69,7 +69,5 @@ namespace tp1_securite_informatique_client.ViewModels
             return _dateTime.ToString("dd-MM-yyyy-HH-mm");
         }
 
-        //Référence(s)
-        //Compte à rebours: https://learn.microsoft.com/en-us/dotnet/api/system.windows.threading.dispatchertimer?view=windowsdesktop-7.0
     }
 }
