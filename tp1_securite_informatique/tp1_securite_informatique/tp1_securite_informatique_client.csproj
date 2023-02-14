@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="OTPGenerator">
       <HintPath>Z:\GitHub_repos\tp1_securite_informatique\OTPGenerator\OTPGenerator\bin\Debug\net6.0\OTPGenerator.dll</HintPath>
     </Reference>
