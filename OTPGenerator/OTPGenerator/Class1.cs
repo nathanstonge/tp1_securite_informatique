@@ -9,25 +9,14 @@ namespace OTPGenerator
 
         public static string Generate(string _dateTime, int _userId)
         {
-            // 1 - Generation de la date (temps) actuel.
-            //DateTime _dateTime = DateTime.UtcNow;
-            //return _dateTime.ToString("dd-MM-yyyy-HH-mm-ss");
 
-            // 2 - Transformation du temps en hash code.
-            //int hash = 0;
-            //hash = _dateTime.Second.GetHashCode();
+            // 1 - Transformation de la concaténation de l'heure actuelle UTC formatée et de l'identifiant d'usager connecté en hash code.
             SHA1 _hash = SHA1.Create();  
             var _dateBytes = Encoding.Default.GetBytes(string.Concat(_dateTime, _userId));
             var _hashCode = _hash.ComputeHash(_dateBytes);
             var _code = Convert.ToHexString(_hashCode);
 
-            //var _idBytes = Encoding.Default.GetBytes(_userId.ToString());
-            //var _hashCodeId = _hash.ComputeHash(_idBytes);
-            //var _codeId = Convert.ToHexString(_hashCodeId);
-
-            //var _code = _codeDate + _codeId;
-
-            // 3 - Recuperation du dernier chiffre de l'identifiant d'usager.
+            // 2 - Récuperation du dernier chiffre de l'identifiant d'usager.
             string _stringUserId = _userId.ToString();
             int _increment = Int32.Parse((_stringUserId.Last()).ToString());
 
@@ -36,7 +25,7 @@ namespace OTPGenerator
                 _increment = 10;
             }
 
-            // 4 - Generation du code de 8 chiffres a partir du hash et du dernier chiffre du id d'usager.
+            // 3 - Generation du code de 8 chiffres a partir du hash et du dernier chiffre du id d'usager.
 
             string _finalCode = "";
             int _cursor = 0;
@@ -52,7 +41,7 @@ namespace OTPGenerator
                 _cursor = _cursor + _increment;
             }
 
-            // 5 - Remplacement des lettres hexa par des chiffres (A=1, B=2, C=3, D=4, E=5, F=6).
+            // 4 - Remplacement des lettres hexa par des chiffres (A=1, B=2, C=3, D=4, E=5, F=6).
             _finalCode = _finalCode.Replace("A", "1");
             _finalCode = _finalCode.Replace("B", "2");
             _finalCode = _finalCode.Replace("C", "3");
